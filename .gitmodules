@@ -1,0 +1,3 @@
+[submodule "function/socksx"]
+	path = function/socksx
+	url = https://github.com/epi-project/socksx

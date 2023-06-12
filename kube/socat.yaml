@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: socat
+  name: socat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socat
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: socat
+    spec:
+      containers:
+        - image: anmolbh/bfc_socat
+          name: socat
+          securityContext:
+            privileged: true
+          ports:
+            - containerPort: 12345
+          command: ["/bin/sh"]
+          args: ["-c", "socat - TCP-LISTEN:12345,fork,reuseaddr"]
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: socat
+spec:
+  type: NodePort
+  selector:
+    app: socat
+  ports:
+    - port: 12345
+      nodePort: 30020
+      protocol: TCP
