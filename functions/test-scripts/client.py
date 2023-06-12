@@ -10,7 +10,7 @@ from socksx.socket import SocketAddress
 @command()
 @option('-d', '--debug', default=False, help="Prints debug information")
 @option('-d', '--destination', default="127.0.0.1:12345", help="Address of the destination")
-@option('-p', '--proxy', default='127.0.01:1080', help="Address of the proxy")
+@option('-p', '--proxy', default='127.0.0.1:1080', help="Address of the proxy")
 @option('-s', '--socks', default=6, type=Choice([6]), help="SOCKS version")
 def cli(**kwargs):
     print("here")
@@ -27,10 +27,10 @@ async def main(loop, debug, destination, proxy, socks):
     client = Client(proxy)
     try:
         socket = await client.connect(destination)
-        raw_fd = await socket.get_raw_fd()
-        print(f"RAW SOCKET FD: {raw_fd}")
-        py_socket = fromfd(raw_fd, AF_PACKET, SOCK_RAW)
-        print(py_socket)
+        # raw_fd = await socket.get_raw_fd()
+        # print(f"RAW SOCKET FD: {raw_fd}")
+        # py_socket = fromfd(raw_fd, AF_PACKET, SOCK_RAW)
+        # print(py_socket)
     except Exception as e:
         print(e)
 
