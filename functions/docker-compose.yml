@@ -31,9 +31,9 @@ services:
       dockerfile: Dockerfile.firewall
     command: "--host 0.0.0.0"
 
-  # netcat:
-  #     image: busybox
-  #     command: "nc -l -p 12345"
-  #     ports:
-  #       - "127.0.0.1:12345:12345"
-  #     restart: always
+  netcat:
+      image: busybox
+      command: "nc -l -p 12345"
+      ports:
+        - "127.0.0.1:12345:12345"
+      restart: always
