@@ -16,11 +16,11 @@ spec:
         app: proxy
     spec:
       containers:
-        - image: anmolbh/bfc_proxy_python
+        - image: anmolbh/bfc_proxy_rust
           name: proxy
           ports:
             - containerPort: 1080
-          args: ["--host", "0.0.0.0", "--port", "1080"]
+          args: ["--host", "0.0.0.0", "--port", "1080", "--chain", "socks6://encrypt:1080", "--chain", "socks6://decrypt:1080", "--chain", "socks6://firewall:1080"]
       restartPolicy: Always
 status: {}
 

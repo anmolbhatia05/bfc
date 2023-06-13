@@ -1,0 +1,14 @@
+[package]
+name = "socksx_client"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "client"
+path = "client.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "3.0.0-rc.4", features = ["derive", "env"] }
+socksx = "0.1.1"
+tokio = { version = "1", features = ["full"] }
